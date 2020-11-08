@@ -25,40 +25,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT_ID      0x1307
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    CodersCorp
-//#define PRODUCT_ID      0x3536
-//#define DEVICE_VER      0x0001
-#define PRODUCT         Redox Pro (6x6)
+#define PRODUCT         Macro Num Pad Pro (5x7)
 
 /* key matrix size */
-#define MATRIX_ROWS 12
+#define MATRIX_ROWS 7
 #define MATRIX_COLS 6
 
 // wiring of each half
-#define MATRIX_COL_PINS { B0,B1,B2,B3,D5,C7 }
-#define MATRIX_ROW_PINS { F0,F1,F4,F5,F6,F7 }
-#define ENCODERS_PAD_A { B6 }
-#define ENCODERS_PAD_B { B5 }
-
+#define MATRIX_COL_PINS { B0,B1,B2,B3,B7,D2 }
+#define MATRIX_ROW_PINS { F0,F1,F4,F5,F6,F7,B6 }
 #define DIODE_DIRECTION COL2ROW
-#define USE_SERIAL
-#define MASTER_LEFT
+// #define MASTER_RIGHT
+//#define EE_HANDS
+// Rows are doubled-up
+//#undef RGBLED_NUM
+//#define RGBLIGHT_ANIMATIONS
+//#define RGBLED_NUM 10
+#define BACKLIGHT_PIN C7
+#define BACKLIGHT_LEVELS 3
 
-#define OLED_DISPLAY_128X32
-//#define OLED_DISPLAY_ADDRESS 0x3C
+#define OLED_DISPLAY_128X64
+#define OLED_DISPLAY_ADDRESS 0x3C
 #define OLED_IC OLED_IC_SSD1306
-
-#define BACKLIGHT_PIN B7
-#define SOFT_SERIAL_PIN D2
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
-//#define LOCKING_SUPPORT_ENABLE
+#define LOCKING_SUPPORT_ENABLE
 /* Locking resynchronize hack */
 #define LOCKING_RESYNC_ENABLE
 /* Set 0 if debouncing isn't needed */
-//#define DEBOUNCE 5
+#define DEBOUNCE 5
 
 /* Enables This makes it easier for fast typists to use dual-function keys */
 #define PERMISSIVE_HOLD
-#define SPLIT_USB_DETECT
+//#define SPLIT_USB_DETECT
 // WS2812 RGB LED strip input and number of LEDs
 //#define RGB_DI_PIN D3
 //#define RGBLED_NUM 12
@@ -74,3 +72,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_TIME_TO_MAX    60
 #define MOUSEKEY_MAX_SPEED      7
 #define MOUSEKEY_WHEEL_DELAY 0
+
+
+#define ENCODERS_PAD_A { B4,D3 }
+#define ENCODERS_PAD_B { B5,C6 }

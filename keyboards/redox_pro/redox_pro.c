@@ -5,13 +5,6 @@
 #define RAISE MO(_RAISE)
 #define LOWER MO(_LOWER)
 
-#ifdef SSD1306OLED
-void led_set_kb(uint8_t usb_led) {
-    // put your keyboard LED indicator (ex: Caps Lock LED) toggling code here
-    led_set_user(usb_led);
-}
-#endif
-
 void matrix_init_kb(void) {
 
     // // green led on
@@ -26,21 +19,26 @@ void matrix_init_kb(void) {
 };
 
 #ifdef OLED_DRIVER_ENABLE
-#define OLED_DISPLAY_128X64
-#define OLED_IC OLED_IC_SSD1306
+#undef OLED_FONT_WIDTH
+#define OLED_FONT_WIDTH 12
+
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+    return OLED_ROTATION_90;
+}
+
 void oled_task_user(void) {
     // Host Keyboard Layer Status
-    oled_write_P(PSTR("Layer: "), false);
+    oled_write_P(PSTR("Layer\n"), false);
 
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            oled_write_P(PSTR("Default\n"), false);
+            oled_write_P(PSTR("Default\n\n"), false);
             break;
         case _LOWER:
-            oled_write_P(PSTR("LOWER\n"), false);
+            oled_write_P(PSTR("LOWER\n\n"), false);
             break;
         case _RAISE:
-            oled_write_P(PSTR("RAISE\n"), false);
+            oled_write_P(PSTR("RAISE\n\n"), false);
             break;
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string

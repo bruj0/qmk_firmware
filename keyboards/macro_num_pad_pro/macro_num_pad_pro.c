@@ -1,11 +1,16 @@
-#include "ergodox_expanse_pro.h"
+#include "macro_num_pad_pro.h"
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
 #define RAISE MO(_RAISE)
 #define LOWER MO(_LOWER)
 
-
+// #ifdef SSD1306OLED
+// void led_set_kb(uint8_t usb_led) {
+//     // put your keyboard LED indicator (ex: Caps Lock LED) toggling code here
+//     led_set_user(usb_led);
+// }
+// #endif
 
 void matrix_init_kb(void) {
 
@@ -21,8 +26,6 @@ void matrix_init_kb(void) {
 };
 
 #ifdef OLED_DRIVER_ENABLE
-#define OLED_DISPLAY_128X64
-#define OLED_IC OLED_IC_SSD1306
 void oled_task_user(void) {
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
@@ -62,4 +65,27 @@ void keyboard_post_init_user(void) {
   debug_matrix=true;
   //debug_keyboard=true;
   //debug_mouse=true;
+}
+
+void encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) {
+        if (clockwise) {
+            register_code(KC_AUDIO_VOL_UP);
+            unregister_code(KC_AUDIO_VOL_UP);
+        } else {
+            register_code(KC_AUDIO_VOL_DOWN);
+            unregister_code(KC_AUDIO_VOL_DOWN);
+        }
+    } else if (index == 1) { /* Second encoder */
+        if (clockwise) {
+            // tap_code(KC_DOWN);
+            register_code(KC_AUDIO_VOL_UP);
+            unregister_code(KC_AUDIO_VOL_UP);
+        } else {
+            // tap_code(KC_UP);
+            register_code(KC_AUDIO_VOL_DOWN);
+            unregister_code(KC_AUDIO_VOL_DOWN);
+        }
+    }
+
 }
